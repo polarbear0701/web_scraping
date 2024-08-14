@@ -6,12 +6,13 @@ import chromedriver_autoinstaller
 import time as time
 import pandas as pd
 
+options = Options()
+options.add_argument("--headless")
 
 #website initializations
 chromedriver_autoinstaller.install()
-driver = webdriver.Chrome()
-options = Options()
-options.add_argument("--headless")
+driver = webdriver.Chrome(options=options)
+
 
 
 #-----------------WEBSITES-----------------#
