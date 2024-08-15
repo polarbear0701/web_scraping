@@ -1,17 +1,21 @@
+#IF RUNNING ON WINDOWS OR MACOS, UN-COMMENT THIS IMPORT AND SETUP TO GET AUTOMATED UPDATE FROM CHROME DRIVER
+# import chromedriver_autoinstaller
+# chromedriver_autoinstaller.install()
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-import chromedriver_autoinstaller
 import time as time
 import pandas as pd
 
-
 #website initializations
-chromedriver_autoinstaller.install()
-driver = webdriver.Chrome()
 options = Options()
 options.add_argument("--headless")
+
+#IF RUNNING ON WINDOWS OR MACOS, COMMENT-OUT SERVICE AND DROP THE SERVICE PARAMETER
+service = Service('/usr/lib/chromium-browser/chromedriver')
+driver = webdriver.Chrome(service=service, options=options)
 
 
 #-----------------WEBSITES-----------------#
