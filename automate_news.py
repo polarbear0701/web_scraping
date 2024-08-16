@@ -38,7 +38,7 @@ def extract_news_list(list_of_website: dict):
         title = []
         link = []
         for element in elements:
-            title.append(element.text)
+            title.append(element.text if element.text != '' else 'No title')
             link.append(element.get_attribute('href'))
             
         my_dict = {'title': title, 'link': link}
