@@ -1,0 +1,10 @@
+{
+    "vnexpress": {
+        "link": "https://vnexpress.net/",
+        "xpath": "//h3[@class=\"title-news\"]/a"
+    },
+    "zing": {
+        "link": "https://znews.vn/",
+        "xpath": "//p[@class=\"article-title\"]/a"
+    }
+}

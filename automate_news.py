@@ -1,15 +1,17 @@
-#IF RUNNING ON WINDOWS OR MACOS, UN-COMMENT THIS IMPORT AND SETUP TO GET AUTOMATED UPDATE FROM CHROME DRIVER
-import chromedriver_autoinstaller
+#__author__ =NGUYEN
+#__IMPORT LIBRARIES__#
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+import chromedriver_autoinstaller
 
 import time as time
 import pandas as pd
 import platform
+import json
 
-#options initializations
+#_________________SETUP INITIALIZATIONS_________________#
 options = Options()
 options.add_argument("--headless")
 
@@ -22,24 +24,10 @@ elif OS_NAME == 'Linux':
     driver = webdriver.Chrome(service=service, options=options)
 
 
+#-----------------SETUP DATABASE-----------------#
+with open('websites.json', 'r') as json_file:
+    list_of_websites = json.load(json_file)
 
-#IF RUNNING ON WINDOWS OR MACOS, COMMENT-OUT SERVICE AND DROP THE SERVICE PARAMETER
-# service = Service('/usr/lib/chromium-browser/chromedriver')
-# driver = webdriver.Chrome(service=service, options=options)
-
-
-#-----------------WEBSITES-----------------#
-list_of_websites = {
-    'vnexpress': {
-        'link': 'https://vnexpress.net/',
-        'xpath': '//h3[@class="title-news"]/a'
-    },
-    
-    'zing': {
-        'link': 'https://znews.vn/',
-        'xpath': '//p[@class="article-title"]/a'
-    },
-}
 
 #-----------------FUNCTIONS-----------------#
 def extract_news_list(list_of_website: dict):
