@@ -2,7 +2,7 @@ from flask import Flask, render_template, send_file, request
 import os
 from automate_news import extract_news_list
 from multiprocessing import Process
-import sched
+from apscheduler.schedulers.background import BackgroundScheduler
 import time
 import json
 
@@ -23,8 +23,10 @@ def construct_csv_path() -> list:
 
 def update_news_list():
     extract_news_list(list_of_website=list_of_websites)
-        
-
+    
+    
+    
+    
 @app.route('/')
 def index():
     # List of available CSV files
@@ -43,16 +45,11 @@ def download_file():
     else:
         return "File not found", 404
 
-def start_server():
-    app.run(debug=True, host='0.0.0.0', port=12345)
+
 
 if __name__ == '__main__':
-    p1 = Process(target=extract_news_list(list_of_website=list_of_websites))
-    p2 = Process(target=app.run(debug=True, host='0.0.0.0', port=12345))
-    # app.run(debug=True, host='0.0.0.0', port=12345)
-    
-    p1.start()
-    p2.start()
-    
-    p1.join()
-    p2.join()
+
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(update_news_list, 'interval', hours=1)
+    scheduler.start()
+    app.run(debug=True)
