@@ -1,6 +1,6 @@
 *.csv
 venv/
 app.py
-/templates
+# /templates
 
 

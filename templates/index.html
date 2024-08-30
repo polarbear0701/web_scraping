@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download CSV</title>
+    <link rel="stylesheet" href = "style.css">
+</head>
+<body>
+    <h1>Download CSV File</h1>
+
+    <label for="csvSelect">Choose a CSV file to download:</label>
+    <select id="csvSelect" class="select_news">
+        {% for file in csv_files %}
+            <option value="{{ file }}">{{ file.split('/')[-1].split('.')[0] }}</option>
+        {% endfor %}
+    </select>
+    <button id="downloadBtn">Download CSV</button>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
