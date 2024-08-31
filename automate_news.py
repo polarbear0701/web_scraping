@@ -12,16 +12,16 @@ import platform
 import json
 
 #_________________SETUP INITIALIZATIONS_________________#
-options = Options()
-options.add_argument("--headless")
 
 OS_NAME = platform.system()
 if OS_NAME == 'Darwin':
+    options = Options()
+    options.add_argument("--headless")
     chromedriver_autoinstaller.install()
     driver = webdriver.Chrome(options=options)
 elif OS_NAME == 'Linux':
     service = Service('/usr/lib/chromium-browser/chromedriver')
-    driver = webdriver.Chrome(service=service, options=options)
+    driver = webdriver.Chrome(service=service)
 
 
 #-----------------SETUP DATABASE-----------------#
