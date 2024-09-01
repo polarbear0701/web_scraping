@@ -52,4 +52,4 @@ if __name__ == '__main__':
     scheduler.add_job(update_news_list, 'interval', hours=1)
     scheduler.start()
     
-    app.run(debug=True, host='0.0.0.0', port=12345)
+    app.run(debug=True, host='0.0.0.0', port=17263)

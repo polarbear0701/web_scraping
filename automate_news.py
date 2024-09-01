@@ -20,8 +20,17 @@ if OS_NAME == 'Darwin':
     chromedriver_autoinstaller.install()
     driver = webdriver.Chrome(options=options)
 elif OS_NAME == 'Linux':
+    options = Options()
+    options.add_argument("start-maximized") # open Browser in maximized mode
+    options.add_argument("disable-infobars") # disabling infobars
+    options.add_argument("--disable-extensions") # disabling extensions
+    options.add_argument("--disable-gpu") # applicable to windows os only
+    options.add_argument("--disable-dev-shm-usage") # overcome limited resource problems
+    options.add_argument("--no-sandbox") # Bypass OS security model
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
     service = Service('/usr/lib/chromium-browser/chromedriver')
-    driver = webdriver.Chrome(service=service)
+    driver = webdriver.Chrome(service=service, options=options)
 
 
 #-----------------SETUP DATABASE-----------------#
