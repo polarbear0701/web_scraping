@@ -1,15 +1,9 @@
 from flask import Flask, render_template, send_file, request
-#from automate_news import extract_news_list
-#from apscheduler.schedulers.background import BackgroundScheduler
 import json
 import os
 
 # __________________SETUP FLASK APP__________________#
 app = Flask(__name__)
-
-# # __________________SETUP DATABASE__________________#
-# with open('websites.json', 'r') as json_file:
-#     list_of_websites = json.load(json_file)
 
 # __________________FUNCTIONS__________________#
 def construct_csv_path() -> list:

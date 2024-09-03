@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import chromedriver_autoinstaller
+from apscheduler.schedulers.background import BackgroundScheduler
 
 import time as time
 import pandas as pd
@@ -59,4 +60,5 @@ def extract_news_list(list_of_website: dict):
     
 
 #-----------------MAIN-----------------#
+
 extract_news_list(list_of_websites)
