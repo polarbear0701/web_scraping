@@ -1,15 +1,15 @@
 from flask import Flask, render_template, send_file, request
-from automate_news import extract_news_list
-from apscheduler.schedulers.background import BackgroundScheduler
+#from automate_news import extract_news_list
+#from apscheduler.schedulers.background import BackgroundScheduler
 import json
 import os
 
 # __________________SETUP FLASK APP__________________#
 app = Flask(__name__)
 
-# __________________SETUP DATABASE__________________#
-with open('websites.json', 'r') as json_file:
-    list_of_websites = json.load(json_file)
+# # __________________SETUP DATABASE__________________#
+# with open('websites.json', 'r') as json_file:
+#     list_of_websites = json.load(json_file)
 
 # __________________FUNCTIONS__________________#
 def construct_csv_path() -> list:
@@ -19,10 +19,6 @@ def construct_csv_path() -> list:
         if csv_file.endswith('.csv'):
             csv_files.append(os.path.join(csv_folder, csv_file))
     return csv_files
-        
-
-def update_news_list():
-    extract_news_list(list_of_website=list_of_websites)
     
 
 # __________________ROUTES__________________#
@@ -46,10 +42,5 @@ def download_file():
 
 
 
-if __name__ == '__main__':
-
-    scheduler = BackgroundScheduler()
-    scheduler.add_job(update_news_list, 'interval', hours=1)
-    scheduler.start()
-    
+if __name__ == '__main__': 
     app.run(debug=True, host='0.0.0.0', port=17263)

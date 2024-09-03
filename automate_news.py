@@ -59,4 +59,4 @@ def extract_news_list(list_of_website: dict):
     
 
 #-----------------MAIN-----------------#
-# extract_news_list(list_of_websites)
+extract_news_list(list_of_websites)
