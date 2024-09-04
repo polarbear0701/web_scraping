@@ -5,8 +5,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import chromedriver_autoinstaller
-from apscheduler.schedulers.background import BackgroundScheduler
 
+import schedule
 import time as time
 import pandas as pd
 import platform
@@ -41,6 +41,7 @@ with open('websites.json', 'r') as json_file:
 
 #-----------------FUNCTIONS-----------------#
 def extract_news_list(list_of_website: dict):
+    print("Start extracting news ...")
     for website in list_of_website:
         driver.get(list_of_website[website]['link'])
         xpath = list_of_website[website]['xpath']
@@ -60,5 +61,11 @@ def extract_news_list(list_of_website: dict):
     
 
 #-----------------MAIN-----------------#
-
-extract_news_list(list_of_websites)
+# schedule.every(10).minutes.do(extract_news_list, list_of_websites)
+while True:
+    print(
+        "The program is running, it will extract news every 30 minutes"
+    )
+    extract_news_list(list_of_websites)
+    time.sleep(1800)
+# extract_news_list(list_of_websites)
