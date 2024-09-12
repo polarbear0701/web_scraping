@@ -61,11 +61,5 @@ def extract_news_list(list_of_website: dict):
     
 
 #-----------------MAIN-----------------#
-# schedule.every(10).minutes.do(extract_news_list, list_of_websites)
-# while True:
-#     print(
-#         "The program is running, it will extract news every 30 minutes"
-#     )
-#     extract_news_list(list_of_websites)
-#     time.sleep(1800)
+
 extract_news_list(list_of_websites)
